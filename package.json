@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@faustbrian/node-sha256": "^1.0.0",
-    "bstring": "^0.3.9"
+    "bcrypto": "^5.4.0"
   },
   "devDependencies": {
     "@faustbrian/stdlint": "^1.0.0",

@@ -1,16 +1,16 @@
 import { hash } from "@faustbrian/node-sha256";
-import { base58 } from "bstring";
+import { encoding } from "bcrypto";
 
 export const encode = (content: string): string => {
   const buffer: Buffer = Buffer.from(content);
 
-  return base58.encode(
+  return encoding.base58.encode(
     Buffer.concat([buffer, hash(content)], buffer.length + 4),
   );
 };
 
 export const decode = (content: string): Buffer => {
-  const buffer: Buffer = base58.decode(content);
+  const buffer: Buffer = encoding.base58.decode(content);
   const payload: Buffer = buffer.slice(0, -4);
   const checksum: Buffer = hash(payload);
 
@@ -21,4 +21,4 @@ export const decode = (content: string): Buffer => {
   return payload;
 };
 
-export const verify = (content: string): boolean => base58.test(content);
+export const verify = (content: string): boolean => encoding.base58.test(content);
